@@ -3,26 +3,23 @@ import {useState, useContext} from 'react'
 // context
 import {StoreContext} from '../Store'
 
-// helper
-import FUNCTIONS from '../_function'
-
-const AddExpression = ({cat_id, setShowAdd}) => {
+const AddCategory = ({setShowAdd}) => {
   const [text, setText] = useState('')
-  const {onAddExpression} = useContext(StoreContext)
+  const {onAddCategory} = useContext(StoreContext)
 
   const onSubmit = () => {
     if (!text) {
-      alert('Expression cannot be empty')
+      alert('Category cannot be empty')
       return
     }
     setShowAdd(false)
-    onAddExpression(text, cat_id)
+    onAddCategory(text)
   }
 
   return (
     <div className='addCard'>
       <textarea
-        placeholder='Add expression...'
+        placeholder='Add category...'
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows='4'
@@ -32,10 +29,10 @@ const AddExpression = ({cat_id, setShowAdd}) => {
           CLOSE
         </button>
         <button className='add' onClick={onSubmit}>
-          ADD EXPRESSION
+          ADD CATEGORY
         </button>
       </div>
     </div>
   )
 }
-export default AddExpression
+export default AddCategory
